@@ -1,0 +1,156 @@
+---
+title: "Assignment 7: Working with XML and JSON in R"
+author: "C. Rosemond 101319"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load, eval=TRUE}
+library(jsonlite)
+library(XML)
+```
+
+### Books
+I selected three books by Judea Pearl and others. Pearl is a luminary in computer science, mathematics, and statistics, and I'm particularly drawn to his impactful work around causal inference. Each of the selected books focuses on the philosophy and theory behind causality and its applications.
+
+### HTML
+
+<!DOCTYPE html>
+<html>
+<table>
+	<tr>
+		<th>author1</th>
+		<th>author2</th>
+		<th>author3</th>
+		<th>title</th>
+		<th>subject</th>
+		<th>year</th>
+		<th>length</th>
+	</tr>
+	<tr>
+		<td>Pearl</td>
+		<td>Mackenzie</td>
+		<td></td>
+		<td>The Book of Why: The New Science of Cause and Effect</td>
+		<td>Statistics</td>
+		<td>2018</td>
+		<td>432</td>
+	</tr>
+	<tr>
+		<td>Pearl</td>
+		<td>Glymour</td>
+		<td>Jewell</td>
+		<td>Causal Inference in Statistics: A Primer</td>
+		<td>Statistics</td>
+		<td>2016</td>
+		<td>156</td>
+	</tr>
+	<tr>
+		<td>Pearl</td>
+		<td></td>
+		<td></td>
+		<td>Causality: Models, Reasoning and Inference</td>
+		<td>Statistics</td>
+		<td>2009</td>
+		<td>484</td>
+	</tr>
+</table>
+</html>
+
+
+I read in the html table using the readHTMLTable function from the XML package. It results in a list of length 1. I then convert the list to a data frame, update the variable names, and convert the variables to the appropriate formats.
+
+```{r html, eval=TRUE}
+books_html <- readHTMLTable("C:\\Users\\Charlie\\Documents\\CUNY MSDS\\data607_fall19\\Week7\\books.html", header=TRUE)
+books_html <- as.data.frame(books_html)
+colnames(books_html) <- c("author1","author2","author3","title","subject","year","length")
+books_html[1:7] <- lapply(books_html[1:7], function(x) as.character(x))
+books_html$length <- as.integer(books_html$length)
+books_html
+```
+
+<br>
+
+### XML
+
+<set>
+	<book>
+		<author1>Pearl</author1>
+		<author2>Mackenzie</author2>
+		<author3></author3>
+		<title>The Book of Why: The New Science of Cause and Effect</title>
+		<subject>Statistics</subject>
+		<year>2018</year>
+		<length>432</length>
+	</book>
+	<book>
+		<author1>Pearl</author1>
+		<author2>Glymour</author2>
+		<author3>Jewell</author3>
+		<title>Causal Inference in Statistics: A Primer</title>
+		<subject>Statistics</subject>
+		<year>2016</year>
+		<length>156</length>
+	</book>
+	<book>
+		<author1>Pearl</author1>
+		<author2></author2>
+		<author3></author3>
+		<title>Causality: Models, Reasoning and Inference</title>
+		<subject>Statistics</subject>
+		<year>2009</year>
+		<length>484</length>
+	</book>
+</set>
+
+
+I read in the xml file using the xmlToDataFrame function from the XML package. It results in a data frame with 3 observations of 7 variables. I then convert the variables to the appropriate formats.
+
+```{r xml, eval=TRUE}
+books_xml <- xmlToDataFrame("C:\\Users\\Charlie\\Documents\\CUNY MSDS\\data607_fall19\\Week7\\books.xml")
+books_xml[1:7] <- lapply(books_xml[1:7], function(x) as.character(x))
+books_xml$length <- as.integer(books_xml$length)
+books_xml
+```
+
+<br>
+
+### JSON
+
+{"books":[
+	{"author1":"Pearl",
+	 "author2":"Mackenzie",
+	 "author3":"",
+	 "title":"The Book of Why: The New Science of Cause and Effect",
+	 "subject":"Statistics",
+	 "year":"2018",
+	 "length":432},
+	{"author1":"Pearl",
+	 "author2":"Glymour",
+	 "author3":"Jewell",
+	 "title":"Causal Inference in Statistics: A Primer",
+	 "subject":"Statistics",
+	 "year":"2016",
+	 "length":156},
+	{"author1":"Pearl",
+	 "author2":"",
+	 "author3":"",
+	 "title":"Causality: Models, Reasoning, and Inference",
+	 "subject":"Statistics",
+	 "year":"2009",
+	 "length":484}
+]}
+
+
+I read in the json file using the fromJSON function from the jsonlite package. It results in a list of length 1. I then convert the list to a data frame and update the variable names.
+
+```{r json, eval=TRUE}
+books_json <- fromJSON("C:\\Users\\Charlie\\Documents\\CUNY MSDS\\data607_fall19\\Week7\\books.json")
+books_json <- as.data.frame(books_json)
+colnames(books_json) <- c("author1","author2","author3","title","subject","year","length")
+books_json
+```
+
