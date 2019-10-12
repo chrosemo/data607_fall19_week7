@@ -1,0 +1,23 @@
+{"books":[
+	{"author1":"Pearl",
+	 "author2":"Mackenzie",
+	 "author3":"",
+	 "title":"The Book of Why: The New Science of Cause and Effect",
+	 "subject":"Statistics",
+	 "year":"2018",
+	 "length":432},
+	{"author1":"Pearl",
+	 "author2":"Glymour",
+	 "author3":"Jewell",
+	 "title":"Causal Inference in Statistics: A Primer",
+	 "subject":"Statistics",
+	 "year":"2016",
+	 "length":156},
+	{"author1":"Pearl",
+	 "author2":"",
+	 "author3":"",
+	 "title":"Causality: Models, Reasoning, and Inference",
+	 "subject":"Statistics",
+	 "year":"2009",
+	 "length":484}
+]}

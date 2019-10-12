@@ -1,0 +1,29 @@
+<set>
+	<book>
+		<author1>Pearl</author1>
+		<author2>Mackenzie</author2>
+		<author3></author3>
+		<title>The Book of Why: The New Science of Cause and Effect</title>
+		<subject>Statistics</subject>
+		<year>2018</year>
+		<length>432</length>
+	</book>
+	<book>
+		<author1>Pearl</author1>
+		<author2>Glymour</author2>
+		<author3>Jewell</author3>
+		<title>Causal Inference in Statistics: A Primer</title>
+		<subject>Statistics</subject>
+		<year>2016</year>
+		<length>156</length>
+	</book>
+	<book>
+		<author1>Pearl</author1>
+		<author2></author2>
+		<author3></author3>
+		<title>Causality: Models, Reasoning and Inference</title>
+		<subject>Statistics</subject>
+		<year>2009</year>
+		<length>484</length>
+	</book>
+</set>
